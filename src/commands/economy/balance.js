@@ -4,7 +4,7 @@ const {
   ChatInputCommandInteraction,
   Client,
 } = require("discord.js");
-const Economy = require("../../models/economySchema");
+const Account = require("../../models/accountSchema");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -22,7 +22,7 @@ module.exports = {
     const user =
       interaction.options.getUser("membru", false) || interaction.member;
 
-    const profile = await Economy.findOne({
+    const profile = await Account.findOne({
       user: user.id,
       guild: interaction.guild.id,
     });

@@ -4,7 +4,7 @@ const {
   ChatInputCommandInteraction,
   Client,
 } = require("discord.js");
-const Economy = require("../../models/economySchema");
+const Account = require("../../models/accountSchema");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -27,7 +27,7 @@ module.exports = {
 
     const amount = interaction.options.getInteger("suma", true);
 
-    const profile = await Economy.findOne({
+    const profile = await Account.findOne({
       user: interaction.member.id,
       guild: interaction.guild.id,
     });

@@ -1,6 +1,5 @@
-const Economy = require("../../models/economySchema");
+const Account = require("../../models/accountSchema");
 const mongoose = require("mongoose");
-const Levels = require("discord-xp");
 const { Message, Client } = require("discord.js");
 
 module.exports = {
@@ -13,16 +12,16 @@ module.exports = {
   async execute(message, client) {
     if (message.author.bot) return;
 
-    let economyProfile = await Economy.findOne({
-      userId: message.author.id,
-      guildId: message.guild.id,
+    let accountProfile = await Account.findOne({
+      user: message.author.id,
+      guild: message.guild.id,
     });
 
-    if (!economyProfile) {
-      economyProfile = await Economy.create({
+    if (!accountProfile) {
+      accountProfile = await Account.create({
         _id: mongoose.Types.ObjectId(),
-        userId: message.author.id,
-        guildId: message.guild.id,
+        user: message.author.id,
+        guild: message.guild.id,
       });
     }
   },
